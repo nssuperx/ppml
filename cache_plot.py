@@ -15,7 +15,7 @@ def main():
         case = []
         for i in range(1, 6):
             times = []
-            with open('./cache_result/norm_' + str(size) + '_' + str(i) + '.txt') as f:
+            with open('./lecture_files/cache_result/norm_' + str(size) + '_' + str(i) + '.txt') as f:
                 lines = []
                 for line in f:
                     line = line.rstrip()
@@ -61,9 +61,6 @@ def main():
     ax.plot(sizeList, plotMemSizeArray)
     plt.show()
 
-
-    print("done")
-                    
 
 if __name__ == "__main__":
     main()
