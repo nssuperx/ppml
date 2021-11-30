@@ -37,6 +37,7 @@ def main():
     plotMemSizeArray = np.mean(memSizeArray, axis=1)
     plotCaseArray = caseArray.T
 
+    # 配列次元数ごと
     fig = plt.figure()
     ax = fig.add_subplot(1,1,1)
     ax.set_title('time (ns)')
@@ -50,6 +51,7 @@ def main():
     ax.legend()
     plt.show()
 
+    # Occupied memory size
     fig = plt.figure()
     ax = fig.add_subplot(1,1,1)
     ax.set_title('Occupied memory size')
@@ -59,6 +61,33 @@ def main():
     ax.set_xlabel('N')
     ax.grid(axis='both')
     ax.plot(sizeList, plotMemSizeArray)
+    plt.show()
+
+    # Occupied memory size と 処理時間
+    fig = plt.figure()
+    ax = fig.add_subplot(1,1,1)
+    ax.set_title('time (ns)')
+    ax.set_xscale('log', base=2)
+    ax.set_xticks(plotMemSizeArray)
+    ax.set_xlabel('Occupied memory size')
+    ax.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
+    ax.grid(axis='both')
+    for i in range(caseNum):
+        ax.plot(plotMemSizeArray, plotCaseArray[i], label='case ' + str(i+1))
+    ax.legend()
+    plt.show()
+
+    # Occupied memory size と 処理時間
+    fig = plt.figure()
+    ax = fig.add_subplot(1,1,1)
+    ax.set_title('time (ns)')
+    ax.set_xscale('log', base=2)
+    ax.set_xticks(plotMemSizeArray)
+    ax.set_xlabel('Occupied memory size')
+    ax.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
+    ax.grid(axis='both')
+    ax.plot(plotMemSizeArray, plotCaseArray[4], label='case ' + str(4+1))
+    ax.legend()
     plt.show()
 
 
