@@ -54,7 +54,7 @@ def main():
     # Occupied memory size
     fig = plt.figure()
     ax = fig.add_subplot(1,1,1)
-    ax.set_title('Occupied memory size')
+    ax.set_title('Occupied memory size (KB)')
     ax.set_xscale('log', base=2)
     ax.set_yscale('log', base=2)
     ax.set_xticks(sizeList)
@@ -69,7 +69,7 @@ def main():
     ax.set_title('time (ns)')
     ax.set_xscale('log', base=2)
     ax.set_xticks(plotMemSizeArray)
-    ax.set_xlabel('Occupied memory size')
+    ax.set_xlabel('Occupied memory size (KB)')
     ax.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
     ax.grid(axis='both')
     for i in range(caseNum):
@@ -77,13 +77,13 @@ def main():
     ax.legend()
     plt.show()
 
-    # Occupied memory size と 処理時間
+    # Occupied memory size と 処理時間 (Case5)
     fig = plt.figure()
     ax = fig.add_subplot(1,1,1)
     ax.set_title('time (ns)')
     ax.set_xscale('log', base=2)
     ax.set_xticks(plotMemSizeArray)
-    ax.set_xlabel('Occupied memory size')
+    ax.set_xlabel('Occupied memory size (KB)')
     ax.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
     ax.grid(axis='both')
     ax.plot(plotMemSizeArray, plotCaseArray[4], label='case ' + str(4+1))
