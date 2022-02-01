@@ -61,40 +61,33 @@ def main():
 
     # 総計算時間 = Transposing + Producting + Reducing
     result_ave = []
-    for proc in procList:
-        one_trial = []
-        for trial_count in range(0, trialNum):
-            accum = []
-            for procNo in range(0, proc):
-                r = trials[trial_count][proc][procNo]
-                accum.append(r.Transposing + r.Producting + r.Reducing)
-            accum_array = np.asarray(accum, dtype=np.float64)
-            one_trial.append(accum_array.mean())
-        one_trial_array = np.asarray(one_trial, dtype=np.float64)
-        result_ave.append(one_trial_array.mean())
-
-    fig = plt.figure()
-    ax = fig.add_subplot(1,1,1)
-    ax.plot(procList, result_ave)
-    plt.show()
-
-    # Reduceの時間
     result_ave_reduce = []
     for proc in procList:
         one_trial = []
+        one_trial_reduce = []
         for trial_count in range(0, trialNum):
             accum = []
+            accum_reduce = []
             for procNo in range(0, proc):
                 r = trials[trial_count][proc][procNo]
-                accum.append(r.Reducing)
+                accum.append(r.Transposing + r.Producting + r.Reducing)
+                accum_reduce.append(r.Reducing)
             accum_array = np.asarray(accum, dtype=np.float64)
+            accum_reduce_array = np.asarray(accum_reduce, dtype=np.float64)
             one_trial.append(accum_array.mean())
+            one_trial_reduce.append(accum_reduce_array.mean())
         one_trial_array = np.asarray(one_trial, dtype=np.float64)
-        result_ave_reduce.append(one_trial_array.mean())
+        one_trial_reduce_array = np.asarray(one_trial_reduce, dtype=np.float64)
+        result_ave.append(one_trial_array.mean())
+        result_ave_reduce.append(one_trial_reduce_array.mean())
 
     fig = plt.figure()
     ax = fig.add_subplot(1,1,1)
+    ax.vlines(x=procList, ymin=-1, ymax=5, color='black', linestyle='dashed', linewidth=0.5)
+    ax.plot(procList, result_ave)
     ax.plot(procList, result_ave_reduce)
+    ax.set_ylabel('time (s)')
+    ax.set_xlabel('processer')
     plt.show()
 
 
